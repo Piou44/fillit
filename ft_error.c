@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:55:23 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/14 16:48:37 by fhuang           ###   ########.fr       */
+/*   Updated: 2015/12/14 17:08:29 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		*check_diese(char *buf)
 {
 	char	**tab;
-	char	*pos;
+	int		**pos;
 	int		diese;
 
 	diese = 0;
@@ -24,7 +24,14 @@ int		*check_diese(char *buf)
 	ft_strcpy(tab, buf);
 	while (diese != 4)
 	{
-
+		while ()
+		if (tab[i] == '#')
+		{
+			diese++;
+			*pos = tab[i][j];
+		}
+		i++;
+		j++;
 	}
 	
 }
