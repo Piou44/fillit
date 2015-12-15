@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:53:44 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/14 17:08:32 by fhuang           ###   ########.fr       */
+/*   Updated: 2015/12/15 21:48:45 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,25 @@
 #include <fcntl.h>
 #include <sys/uio.h>
 #include <sys/types.h>
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 # define BUF_SIZE 21
 
-char		*ft_error(int fd);
+typedef struct 	s_tetris
+{
+	int			max_elem;
+	int			nb_tetris;
+	char 		*tetris;
+
+}				t_tetris;
+
+typedef struct	s_square
+{
+
+}				t_square;
+
+//char		*ft_error(int fd);
+int		check_tetris(char *buf);
 
 #include <stdio.h>
 
