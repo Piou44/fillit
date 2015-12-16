@@ -6,12 +6,12 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 16:05:50 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/15 21:15:13 by fhuang           ###   ########.fr       */
+/*   Updated: 2015/12/16 14:20:06 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
+/*
 int		ft_alloue_tetris(t_tetris *begin)
 {
 	t_tetris	*tmp;
@@ -30,8 +30,8 @@ int		ft_alloue_tetris(t_tetris *begin)
 	}
 	begin->nb_tetris++;
 	return (0);
-}
-
+}*/
+/*
 int		ft_stock(char *buf)
 {
 	t_tetris	*ptr;
@@ -44,4 +44,4 @@ int		ft_stock(char *buf)
 		if (buf[i] == '#')
 			tab[i]
 	}
-}
+}*/

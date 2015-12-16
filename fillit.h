@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:53:44 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/15 21:48:45 by fhuang           ###   ########.fr       */
+/*   Updated: 2015/12/16 16:43:21 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct	s_square
 
 //char		*ft_error(int fd);
 int		check_tetris(char *buf);
+char	**convert(char *buf);
+void	get_tetris(t_list **list, char **tab);
 
 #include <stdio.h>
 
