@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 15:27:23 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/15 14:30:57 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/16 17:47:28 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_next_line(int const fd, char **line)
 
 #include <stdio.h>
 #include <fcntl.h>
-
+/*
 int		main(void)
 {
 	int		fd;
@@ -66,4 +66,4 @@ int		main(void)
 	close(fd);
 	return (0);
 }
-
+*/

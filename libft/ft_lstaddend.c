@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tetris.c                                        :+:      :+:    :+:   */
+/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/16 15:25:04 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/16 21:16:21 by fhuang           ###   ########.fr       */
+/*   Created: 2015/12/04 11:34:35 by fhuang            #+#    #+#             */
+/*   Updated: 2015/12/04 11:34:38 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-/*
-typedef struct	s_tetris
-{
-	char	**tab;
+#include "libft.h"
 
-}				t_tetris;
-*/
-void	put_tetris(t_list **list, char **tab)
+void	ft_lstaddend(t_list **alst, t_list *new)
 {
-	ft_lstaddend(list, ft_lstnew((char**)*tab, sizeof(tab)));
+	t_list	*ptr;
+
+	ptr = *alst;
+	if (*alst == NULL)
+		*alst = new;
+	else
+	{
+		while (ptr->next != NULL)
+			ptr = ptr->next;
+		ptr->next = new;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:53:44 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/16 16:43:21 by fhuang           ###   ########.fr       */
+/*   Updated: 2015/12/16 21:10:32 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <fcntl.h>
 #include <sys/uio.h>
 #include <sys/types.h>
-#include "../libft/libft.h"
+#include "libft.h"
+#include "get_next_line.h"
 
 # define BUF_SIZE 21
 
@@ -36,9 +37,10 @@ typedef struct	s_square
 }				t_square;
 
 //char		*ft_error(int fd);
-int		check_tetris(char *buf);
-char	**convert(char *buf);
-void	get_tetris(t_list **list, char **tab);
+int		check_tetris(char **tab);
+void	put_tetris(t_list **list, char **tab);
+char	**stock_tab(char **tab, char *line);
+int		do_everything(t_list *lst, int fd, char *line);
 
 #include <stdio.h>
 

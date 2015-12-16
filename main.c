@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:56:24 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/16 17:27:08 by fhuang           ###   ########.fr       */
+/*   Updated: 2015/12/16 21:16:14 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int		main(int ac, char **av)
 	t_list	*list = NULL;
 
 	fd = open(av[1], O_RDONLY);
-	while ((ret = read(fd, buf, BUF_SIZE)))
+	char *line;
+	do_everything(list, fd, line);
+	close(fd);
+/*	while ((ret = read(fd, buf, BUF_SIZE)))
 	{
 		if (ret == -1)
 			return (-1);
@@ -64,5 +67,6 @@ int		main(int ac, char **av)
 //	ft_error(fd);
 	if (ac)
 	close(fd);
+	*/
 	return (0);
 }

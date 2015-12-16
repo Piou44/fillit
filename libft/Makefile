@@ -6,7 +6,7 @@
 #    By: asalama <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 16:46:12 by asalama           #+#    #+#              #
-#    Updated: 2015/12/16 17:34:05 by asalama          ###   ########.fr        #
+#    Updated: 2015/12/16 17:42:26 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRC		= ft_strlen.c		\
 		  ft_lstdel.c		\
 		  ft_lstadd.c		\
 		  ft_lstiter.c		\
+		  ft_lstaddend.c	\
 		  get_next_line.c
 
 OBJ= $(SRC:.c=.o)
