@@ -6,55 +6,26 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:55:23 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/16 21:16:16 by fhuang           ###   ########.fr       */
+/*   Updated: 2015/12/17 19:12:17 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-// CHECK SI TETRIMINOS EST VALIDE
+typedef	struct	 s_fillit
+{
+	int		diese;
+	char	**tab;
+}				t_fillit;
 
-/*
-   int		*check_diese(char *buf)
-   {
-   char	**tab;
-   int		**pos;
-   int		diese;
-   int		i = 0;
-   int		j = 0;
-
-   diese = 0;
-   if (!(tab = (char**)malloc(BUF_SIZE)))
-   return (NULL);
-   ft_strcpy(tab, buf);
-   while (diese != 4)
-   {
-   while ()
-   if (tab[i] == '#')
-   {
-   diese++;
- *pos = tab[i][j];
- }
- i++;
- j++;
- }
-
- }
- */
-
-// CHECK SI TOUT LE BLOC EST VALIDE
-
-int		check_diese(char **tab)
+int		check_diese(char **tab, int diese)
 {
 	int		x;
 	int		y;
-	int		diese;
 	int		connex;
 
 	y = 0;
 	connex = 0;
-	diese = 0;
-
 	while (y < 4)
 	{
 		x = 0;
@@ -62,81 +33,123 @@ int		check_diese(char **tab)
 		{
 			if (tab[y][x] == '#')
 			{
-				if (y != 4 && tab[y + 1][x] == '#')
+			if (y != 3 && tab[y + 1][x] == '#')
 					connex++;
 				if (y != 0 && tab[y - 1][x] == '#')
 					connex++;
-				if (x != 4 && tab[y][x + 1] == '#')
+				if (x != 3 && tab[y][x + 1] == '#')
 					connex++;
 				if (x != 0 && tab[y][x - 1] == '#')
 					connex++;
 				diese++;
+				tab[y][x] = ft_alphabet(tab[y][x]);
+//				printf("alpha: %c\n", tab[y][x]);	
 			}
 			x++;
 		}
 		y++;
 	}
+//	printf("connex : %i\n", connex);
+//	printf("diese: %i\n", diese);
 	return ((connex == 6 || connex == 8) && diese == 4 ? 1 : 0);
 }
-/*	if (buf[4] == '\n' && buf[9] == '\n' && buf[14] == '\n')
-		while (buf[i] && (buf[i] == '.' || buf[i] == '#'))
-		{
-			if (buf[i] == '.')
-				point++;
-			if (buf[i] == '#')
-				diese++;
-			i++;
-		}
-	if (point == 12 && diese == 4)
-		//		if (check_diese(buf))
-		return (1);
-	return (0);*/
 
+char		ft_alphabet(char alpha)
+{
+	static int		i = 0;
+	static int		j = 0;
+	
+	if (alpha == '#') {
+	if (j <= 4)
+	{
+		alpha = i + 65;
+//		printf("AL: %c\n", alpha);
+		j++;
+	}
+	if (j == 4)
+	{
+		i++;
+		j = 0;
+	}}
+	return (alpha);
+}
 
 int		do_everything(t_list *lst, int fd, char *line)
 {
 	int		i;
 	int 	j;
+	int		x;
+	int		ret =  1;
 	int		gnl;
-	char	**tab;
+	t_fillit adeter;
+
+
 
 	i = 0;
 	j = 0;
-	while (1)
+	while (ret > 0)
 	{
 		gnl = 0;
-		if (!(tab = (char**)malloc(sizeof(char*) * 5)))
+		if (!(adeter.tab = (char**)malloc(sizeof(char*) * 300)))
 			return (0);
-		while (gnl++ < 5 && get_next_line(fd, &line))
-		{/*
-			while (i < ft_strlen(line) + 1)
-				if (!(tab[i++] = (char*)malloc(sizeof(char) * ft_strlen(line) + 1)))
-					return (NULL);*/
-			tab = stock_tab(tab, line);
-		}
-		if (!(check_tetris(tab)))
+		x = 0;
+		while (gnl++ < 5 && (ret = get_next_line(fd, &line)))
 		{
+			adeter.tab[x++] = ft_strdup(line);
+		}
+//		printf("check_col : %i\n", check_col(adeter.tab));
+//		printf("check_line : %i\n", check_line(adeter.tab, line));
+//		printf("check_diese : %i\n", check_diese(adeter.tab, adeter.diese));
+		printf("check tetris :%i\n", check_tetris(adeter.tab, adeter.diese));
+//		if (!(check_tetris(adeter.tab, line, adeter.diese)))
+//		{
 	//		free(&tab);
 	//		free(*tab);
-			return (0);
-		}
-		put_tetris(&lst, tab);
+//			return (0);
+//		}
+		put_tetris(&lst, adeter.tab);
 	}
+	return (1);
 }
-	/*	while (buf[j] != '\0')
-	{
-		tab[y][x] = buf[j];
-		if (buf[j] == '\n')
-		{
-			y++;
-			x = -1;
-			buf[j] = '\0';
-		}
-		j++;
-		x++;
-	}*/
 
-int		check_tetris(char **tab)
+int		last_check(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != '.' && str[i] != '#')
+		   return (0);	
+		i++;
+	}
+	return (1);
+}
+
+int		check_line(char **tab)
+{
+	int		x = 0;
+	
+	while (x < 4)
+	{
+		if (last_check(tab[x]) == 0 || ft_strlen(tab[x]) != 4)
+			return (0);
+		x++;
+	}
+	return (check_col(tab) == 4 ? 1 : 0);
+}
+
+int		check_col(char **tab)
+{
+	int		x;
+
+	x = 0;
+	while (*tab[x] != '\0')
+		x++;
+	return (x);
+}
+
+int		check_tetris(char **tab, int diese)
 {
 	int		i;
 	int		x;
@@ -149,38 +162,11 @@ int		check_tetris(char **tab)
 		x = 0;
 		while (x < 4)
 		{
-			if (tab[y][x] != '.' || tab[y][x] != '#')
-				return (0);
+//			if (tab[y][x] != '.' && tab[y][x] != '#')
+//				return (0);
 			x++;
 		}
 		y++;
 	}
-	return (i == 4 && check_diese(tab) ? 1 : 0);
-}
-
-char	**stock_tab(char **tab, char *line)
-{
-	int				x;
-	int				i;
-	int				j;
-	static int		y;
-
-	x = 0;
-	i = 0;
-	j = 0;
-		tab[y++] = ft_strdup(line);
-	return (tab);
-/*	while (y < 5)
-	{
-		x = 0;
-		while (x < 5)
-		{
-			tab[y][x] = buf[j];
-			j++;
-			x++;
-		}
-		tab[y][x] = 0;
-		j++;
-		y++;
-	}*/
+	return ((check_line(tab) && check_diese(tab, diese)) ? 1 : 0);
 }
