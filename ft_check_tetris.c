@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_check_tetris.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/14 15:55:23 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/22 18:14:28 by asalama          ###   ########.fr       */
+/*   Created: 2015/12/24 10:57:19 by asalama           #+#    #+#             */
+/*   Updated: 2015/12/24 11:01:01 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-typedef	struct	 s_fillit
-{
-	int		nb_tetris;
-	char	**tab;
-}				t_fillit;
-
-int		check_diese(char **tab)
+int			check_diese(char **tab)
 {
 	int		x;
 	int		y;
@@ -28,14 +22,14 @@ int		check_diese(char **tab)
 	y = 0;
 	connex = 0;
 	diese = 0;
-	while (y < 4)
+	while (y++ < 4)
 	{
 		x = 0;
-		while (x < 4)
+		while (x++ < 4)
 		{
 			if (tab[y][x] == '#')
 			{
-			if (y != 3 && tab[y + 1][x] == '#')
+				if (y != 3 && tab[y + 1][x] == '#')
 					connex++;
 				if (y != 0 && tab[y - 1][x] == '#')
 					connex++;
@@ -46,9 +40,7 @@ int		check_diese(char **tab)
 				tab[y][x] = ft_alphabet(tab[y][x]);
 				diese++;
 			}
-			x++;
 		}
-		y++;
 	}
 	return (((connex == 3) || (connex == 4)) && diese == 4 ? 1 : 0);
 }
@@ -59,7 +51,7 @@ char		ft_alphabet(char alpha)
 	static int		j = 0;
 	t_fillit		adeter;
 
-	if (alpha == '#') 
+	if (alpha == '#')
 	{
 		if (j <= 4)
 		{
@@ -71,12 +63,12 @@ char		ft_alphabet(char alpha)
 			i++;
 			adeter.nb_tetris = i;
 			j = 0;
-		}	
+		}
 	}
 	return (alpha);
 }
 
-int		check_tetris(char **tab)
+int			check_tetris(char **tab)
 {
 	int		x;
 	int		y;
@@ -96,7 +88,7 @@ int		check_tetris(char **tab)
 	return (check_diese(tab));
 }
 
-int		free_everything(char **tab, char *line)
+int			free_everything(char **tab, char *line)
 {
 	int		x;
 
@@ -108,17 +100,17 @@ int		free_everything(char **tab, char *line)
 	return (0);
 }
 
-int		do_everything(t_list *lst, int fd)
+int			do_everything(t_list *lst, int fd)
 {
-	int		x;
-	int		ret;
-	char	c;
-	char	*line;
-	t_fillit adeter;
+	int			x;
+	int			ret;
+	char		c;
+	char		*line;
+	t_fillit	adeter;
 
 	if ((line = (char*)malloc(sizeof(char) * 5)) == NULL)
 		return (0);
-	ret = 1;	
+	ret = 1;
 	while ((x = 0) || ret > 0)
 	{
 		if (!(adeter.tab = (char**)malloc(sizeof(char*) * 4)))
@@ -131,7 +123,7 @@ int		do_everything(t_list *lst, int fd)
 				line[ret] = '\0';
 			else
 				return (0);
-			adeter.tab[x++] = ft_strdup(line); 
+			adeter.tab[x++] = ft_strdup(line);
 		}
 		c = '\0';
 		read(fd, &c, 1);

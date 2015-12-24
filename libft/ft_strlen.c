@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:18:34 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/10 14:49:16 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/24 10:56:47 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t		ft_strlen(const char *str)
 {
 	size_t	i;
-	
+
 	if (str == NULL)
 		return (0);
 	i = 0;
