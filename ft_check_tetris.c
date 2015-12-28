@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 10:57:19 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/28 15:26:01 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/28 16:33:19 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int			check_diese(char **tab)
 	y = 0;
 	connex = 0;
 	diese = 0;
-	while (y++ < 4)
+	while (y < 4)
 	{
 		x = 0;
-		while (x++ < 4)
+		while (x < 4)
 		{
 			if (tab[y][x] == '#')
 			{
@@ -40,8 +40,14 @@ int			check_diese(char **tab)
 				tab[y][x] = ft_alphabet(tab[y][x]);
 				diese++;
 			}
+			x++;
 		}
+		y++;
 	}
+	printf("%s\n", tab[0]);
+	printf("%s\n", tab[1]);
+	printf("%s\n", tab[2]);
+	printf("%s\n", tab[3]);
 	return (((connex == 3) || (connex == 4)) && diese == 4 ? 1 : 0);
 }
 
@@ -127,10 +133,12 @@ int			do_everything(t_list *lst, int fd)
 		}
 		c = '\0';
 		read(fd, &c, 1);
+	//	printf("o\n");
 		if (c != '\0' && c != '\n')
 			return (0);
 		if (!(check_tetris(adeter.tab)))
 			return (free_everything(adeter.tab, line));
+		printf("%c", c);
 		put_tetris(&lst, adeter.tab);
 		if (c == 0)
 			break ;

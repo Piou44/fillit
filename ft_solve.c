@@ -6,12 +6,12 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:55:59 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/28 15:26:07 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/28 15:29:08 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
+/*
 unsigned int	ft_sqrt(unsigned int nb)
 {
 	unsigned int		i;
@@ -32,7 +32,7 @@ unsigned int	ft_squared(unsigned int nb)
 char			**smallest_sqr(t_list *lst)
 {
 }
-
+*/
 int				fill_square(t_list *lst)
 {
 	int		i;
