@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:53:44 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/24 11:03:29 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/28 15:26:03 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,6 @@ typedef struct	s_fillit
 	char		**tab;
 }				t_fillit;
 
-typedef struct 	s_tetris
-{
-	int			max_elem;
-	int			nb_tetris;
-	char 		*tetris;
-
-}				t_tetris;
-
-typedef struct	s_square
-{
-
-}				t_square;
-
 int				check_tetris(char **tab);
 char			ft_alphabet(char alpha);
 void			put_tetris(t_list **list, t_fillit *adeter);
@@ -53,6 +40,6 @@ int				free_everything(char **tab, char *line);
 unsigned int	ft_sqrt(unsigned int nb);
 unsigned int	ft_squared(unsigned int nb);
 int				fill_square(t_list *lst);
-char			**smallest_sqr(t_list *lst);
+//char			**smallest_sqr(t_list *lst);
 
 #endif

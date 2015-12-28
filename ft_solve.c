@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:55:59 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/24 11:02:36 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/28 15:26:07 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ int				fill_square(t_list *lst)
 	sqr = (char**)malloc(sizeof(char*) * 1000);
 	while (i < 1000)
 		sqr[i] = (char*)malloc(sizeof(char) * 1000);
+	return (0);
 }
