@@ -6,7 +6,7 @@
 #    By: asalama <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 16:46:12 by asalama           #+#    #+#              #
-#    Updated: 2015/12/21 18:03:24 by asalama          ###   ########.fr        #
+#    Updated: 2015/12/29 13:55:57 by asalama          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = libft.a
 
 SRC		= ft_strlen.c		\
 		  ft_isdigit.c		\
+		  ft_isupper.c		\
 		  ft_strcmp.c		\
 		  ft_memmove.c		\
 		  ft_memset.c		\

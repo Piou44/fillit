@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:11:13 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/16 17:43:11 by fhuang           ###   ########.fr       */
+/*   Updated: 2015/12/29 13:56:15 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
 
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
+int					ft_isupper(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);

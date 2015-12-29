@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:55:59 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/28 19:23:55 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/29 17:56:28 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ unsigned int	ft_sqrt(unsigned int nb)
 /*
 unsigned int	ft_squared(unsigned int nb)
 {
-	return (nb * nb);
+return (nb * nb);
 }
 */
 
-int			square_size(size_t nb_tetris)
+static int			square_size(size_t nb_tetris)
 {
 	int		size;
 	int		sqr;
 
 	sqr = 0;
-	size = nb_tetris * 6;
+	size = nb_tetris * 4;
 	while (size > sqr * sqr)
 		sqr++;
 	return (sqr);
@@ -66,7 +66,7 @@ char		**fresh_map(t_list **lst)
 			return (NULL);
 	return (map);
 }
-
+/*
 void		cpy_tetris(char **map, char **tab, int j, int i)
 {
 	int			x;
@@ -87,22 +87,74 @@ void		cpy_tetris(char **map, char **tab, int j, int i)
 		i++;
 	}
 }
+*/
+int		cpy_maillon(t_list **lst)
+{
+	char	**map;
+	int		x;
+	int		y;
 
-int		backtracking(t_list **lst, int y, int x)
+	j = 0;
+	y = 0;
+	map = fresh_map(lst);
+	while (j < 5)
+	{
+		i = 0;
+		x = 0;
+		while (i < 5)
+		{
+			map[y][x] = (*lst)->((char**)content)[j][i];
+			x++;
+			j++;
+		}
+		y++;
+		i++;
+	}
+	return (0);
+}
+
+int		cpy_next(t_list **lst, int y, int x)
 {
 	char	**map;
 
 	map = fresh_map(lst);
-	while (x < sqr)
+	*lst = (*lst)->next;
+	j = 0;
+	while (j < 5)
 	{
-		while (y < sqr)
+		i = 0;
+		x = 0;
+		while (i < 5)
 		{
-			if ()
-			y++;
+			map[y][x] = (*lst)->((char**)content)[j][i];
+			x++;
+			j++;
 		}
-		x++;
+		y++;
+		i++;
 	}
+	return (0);
 }
+
+int		check_space(char **map, t_list **lst)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (y < sqr)
+	{
+		x = 0;
+		while (x < sqr)
+		{
+			if (
+			x++;
+		}
+		y++;
+	}
+
+}
+
 
 
 
