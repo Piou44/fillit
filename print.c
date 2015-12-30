@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 11:34:35 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/30 18:12:55 by asalama          ###   ########.fr       */
+/*   Created: 2015/12/30 16:42:28 by asalama           #+#    #+#             */
+/*   Updated: 2015/12/30 17:06:24 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-void	ft_lstaddend(t_list **alst, t_list *new)
+void	print_map(char **map)
 {
-	t_list	*ptr;
+	int		i;
 
-	ptr = *alst;
-	if (alst != NULL && *alst == NULL)
-		*alst = new;
-	else
-	{
-		while (ptr->next != NULL)
-			ptr = ptr->next;
-		ptr->next = new;
-	}
+	i = 0;
+	while (i < cote)
+		ft_putendl(map[i++]);
 }

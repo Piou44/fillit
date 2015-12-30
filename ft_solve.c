@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:55:59 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/29 17:56:28 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/30 18:12:44 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ return (nb * nb);
 static int			square_size(size_t nb_tetris)
 {
 	int		size;
-	int		sqr;
+	int		cote;
 
-	sqr = 0;
+	cote = 0;
 	size = nb_tetris * 4;
-	while (size > sqr * sqr)
-		sqr++;
-	return (sqr);
+	while (size > cote * cote)
+		cote++;
+	return (cote);
 }
 
 char		**fresh_map(t_list **lst)
@@ -66,101 +66,76 @@ char		**fresh_map(t_list **lst)
 			return (NULL);
 	return (map);
 }
-/*
-void		cpy_tetris(char **map, char **tab, int j, int i)
+
+int		cpy_maillons(char **map, t_list **lst)
 {
-	int			x;
-	int			y;
+	int		x;
+	int		y;
+
+	j = 0;
+	y = 0;
+	while (j < 4)
+	{
+		i = 0;
+		x = 0;
+		while (i < 4)
+		{
+			if (ft_isupper((*lst)->((char**)content)[j][i]))
+				map[y][x] = (*lst)->((char**)content)[j][i];
+			x++;
+			i++;
+		}
+		y++;
+		j++;
 	
-	x = 0;
-	while (x < 4)
-	{
-		y = 0;
-		while (y < 4)
-		{
-			if (ft_isupper(tab[y][x]) == 0)
-				tab[y][x] = map[j][i];
-			y++;
-			j++;
-		}
-		x++;
-		i++;
 	}
-}
-*/
-int		cpy_maillon(t_list **lst)
-{
-	char	**map;
-	int		x;
-	int		y;
-
-	j = 0;
-	y = 0;
-	map = fresh_map(lst);
-	while (j < 5)
-	{
-		i = 0;
-		x = 0;
-		while (i < 5)
-		{
-			map[y][x] = (*lst)->((char**)content)[j][i];
-			x++;
-			j++;
-		}
-		y++;
-		i++;
-	}
-	return (0);
-}
-
-int		cpy_next(t_list **lst, int y, int x)
-{
-	char	**map;
-
-	map = fresh_map(lst);
 	*lst = (*lst)->next;
+	return (0);
+
+}
+
+int		ft_cmp(char **map, t_list **lst, int y, int x)
+{
+	int		i;
+	int		j;
+	int		cote;
+
 	j = 0;
-	while (j < 5)
+	while (y < cote && j < 4)
 	{
-		i = 0;
 		x = 0;
-		while (i < 5)
-		{
-			map[y][x] = (*lst)->((char**)content)[j][i];
+		i = 0;
+		while (x < cote && ft_isupper(map[y][x]))
 			x++;
-			j++;
+		while (x < cote && i < 4 && (*lst)->((char**)content)[j][i])
+		{ 
+			if (ft_isupper((*lst)->((char**)content)[j][i]))
+			{
+				if (map[y][x] == '.')
+					x++;
+				else
+					return (1);
+			}
+			else
+				x++;
+			i++;
 		}
+		j++;
 		y++;
-		i++;
 	}
 	return (0);
 }
 
-int		check_space(char **map, t_list **lst)
+char	backtracking(char **map, t_list **lst, int y, int x)
 {
-	int		x;
-	int		y;
-
-	y = 0;
-	while (y < sqr)
+	while (ft_cmp(map, lst, y, x) == 0)
 	{
-		x = 0;
-		while (x < sqr)
-		{
-			if (
-			x++;
-		}
-		y++;
+		cpy_maillons(map, lst);
 	}
-
+	if (ft_cmp(map, lst, y, x) == 1)
+		backtracking(map ,lst, y + 1, x);
+	return (map);
 }
-
-
-
-
-
-
-
 
 
 

@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 15:25:04 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/29 17:56:32 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/30 18:13:00 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,25 +75,25 @@ void	put_tetris(t_list **list, char **tab)//t_fillit *adeter)
 	i = 0;
 	j = 0;
 	trim = (char**)ft_memalloc(sizeof(char*) * 5);
-	while (i < 5)
-		trim[i++] = (char*)ft_memalloc(sizeof(char) * 5);
-	i = 0;
-	while (i < 5)
+	while (j < 4)
+		trim[j++] = (char*)ft_memalloc(sizeof(char) * 5);
+	j = 0;
+	while (j < 4)
 	{
-		j = 0;
-		while (j < 5)
+		i = 0;
+		while (i < 4)
 		{
 			trim[j][i] == '.';
-			j++;
+			i++;
 		}
 		trim[j][i] = '\0';
-		i++;
+		j++;
 	}
 	trim_tetris(tab, trim);
 	
 	ft_lstaddend(list, ft_lstnew(trim, sizeof(trim)));//ft_lstnew(adeter, sizeof(adeter)));
 	i = 0;
-	while (i < 5)
+	while (i < 4)
 		free(trim[i++]);
 	free(trim);
 }
