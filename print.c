@@ -6,13 +6,13 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 16:42:28 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/30 17:06:24 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/31 15:07:14 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	print_map(char **map)
+void	print_map(char **map, int cote)
 {
 	int		i;
 
