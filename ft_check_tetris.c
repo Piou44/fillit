@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 10:57:19 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/30 16:39:46 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/31 14:18:24 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,10 @@ int			do_everything(t_list *lst, int fd)
 			return (0);
 		if (!(check_tetris(adeter.tab)))
 			return (free_everything(adeter.tab, line));
+//		printf("%s\n", adeter.tab[0]);
+//		printf("%s\n", adeter.tab[1]);
+//		printf("%s\n", adeter.tab[2]);
+//		printf("%s\n", adeter.tab[3]);
 		put_tetris(&lst, adeter.tab);
 		if (c == 0)
 			break ;

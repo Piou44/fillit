@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:56:24 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/30 18:13:03 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/31 14:18:22 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int		main(int ac, char **av)
 {
 	int		fd;
-	int		cote;
+//	int		cote;
 	t_list	*list;
-	char	**map;
+//	char	**map;
 
 	list = NULL;
 	if (ac == 2)
@@ -29,12 +29,12 @@ int		main(int ac, char **av)
 			close(fd);
 			return (-1);
 		}
-		cote = sqaure_size();
-		if (!(map = fresh_map(lst, size)))
-			return (-1);
-		backtrack;
-		print_map(map);
-		free(map); // * et **
+//		cote = sqaure_size();
+//		if (!(map = fresh_map(lst, size)))
+//			return (-1);
+//		backtrack;
+//		print_map(map);
+//		free(map); // * et **
 		close(fd);
 	}
 	return (0);

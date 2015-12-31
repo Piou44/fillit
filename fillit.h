@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:53:44 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/28 17:02:38 by asalama          ###   ########.fr       */
+/*   Updated: 2015/12/31 13:29:13 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_fillit
 
 int				check_tetris(char **tab);
 char			ft_alphabet(char alpha);
-void			put_tetris(t_list **list, t_fillit *adeter);
+void			put_tetris(t_list **list, char **tab);
 int				do_everything(t_list *lst, int fd);
 int				check_diese(char **tab);
 int				free_everything(char **tab, char *line);
