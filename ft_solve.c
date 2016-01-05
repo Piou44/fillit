@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:55:59 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/31 15:49:48 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/05 20:50:12 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ return (nb * nb);
 }
 */
 
-static int			square_size(size_t nb_tetris)
+int			square_size(size_t nb_tetris)
 {
 	int		size;
 	int		cote;
@@ -42,11 +42,10 @@ static int			square_size(size_t nb_tetris)
 	return (cote);
 }
 
-char		**fresh_map(t_list **lst)
+char		**fresh_map(t_list **lst, int cote)
 {
-	size_t		i;
-	size_t		j;
-	size_t		size;
+	int			i;
+	int			j;
 	t_list		*ptr;
 	char		**map;
 
@@ -56,24 +55,41 @@ char		**fresh_map(t_list **lst)
 	{
 		ptr = ptr->next;
 		i++;
-	}
-	size = square_size(i);
-	if (!(map = (char**)ft_memalloc(sizeof(char*) * (size + 1))))
+	} 
+	if (!(map = (char**)ft_memalloc(sizeof(char*) * (cote + 1))))
 		return (NULL);
 	j = 0;
-	while (j < size)
-		if (!(map[j++] = (char*)ft_memalloc(sizeof(char) * (size + 1))))
+	while (j < cote)
+		if (!(map[j++] = (char*)ft_memalloc(sizeof(char) * (cote + 1))))
 			return (NULL);
+	fill_with_dots(map, cote);
 	return (map);
 }
 
-int		cpy_maillons(char **map, t_list **lst)
+int		cpy_maillons(char **map, t_list *lst, t_map *coord)
 {
 	int		x;
 	int		y;
 	int		i;
 	int		j;
+	char	**tetris;
 
+	x = coord->x;
+	y = coord->y;
+	tetris = ((t_cote)(lst->content))->tab;
+	j = 0;
+	while (y < cote && j < ((t_cote)(lst->content))->ver)
+	{
+		i = 0;
+		while (x < cote && i < ((t_cote)(lst->content))->hor)
+		{
+			if (ft_isupper(tetris[j][i]) && map[y][x] == '.')
+			{
+				map[y][x] = tetris[j][i];
+				if (ft_isupper(tetris[j][i + 1]))
+					map[y][x + 1] = 
+		}
+		/*	
 	j = 0;
 	y = 0;
 	while (j < 4)
@@ -82,61 +98,229 @@ int		cpy_maillons(char **map, t_list **lst)
 		x = 0;
 		while (i < 4)
 		{
-			if (ft_isupper((((char**)((*lst)->content)))[j][i]))
-				map[y][x] = ((char**)((*lst)->content))[j][i];
+			
+			if (ft_isupper((((char**)(lst->content)))[j][i]))
+				map[y][x] = ((char**)(lst->content))[j][i];
 			x++;
 			i++;
 		}
 		y++;
 		j++;
-	
-	}
-	*lst = (*lst)->next;
-	return (0);
 
+
+	}
+	lst = lst->next;
+	return (0);
+*/
+/*	j = 0;
+	tetris = ((t_cote)(lst->content))->tab;
+	x = coord->x;
+	y = coord->y;
+	while (y < cote && j < ((t_cote)(lst->content))->ver)
+	{
+		i = 0;
+		while (x < cote && i < ((t_cote)(lst->content))->hor)
+		{
+			while (ft_isupper(map[y][x]))
+				x++;
+			if (ft_isupper(tetris[j][i]))
+			{
+				map[y][x] = tetris[j][i];
+				x++;
+			
+				}
+			i++;
+		}
+		j++;
+		y++;
+	}
+}
+*/
+
+int		ft_map_check(char **map, int cote)
+{
+	int		x;
+	int		y;
+	
+	y = 0;
+	while (y < cote)
+	{
+		x = 0;
+		while (x < cote)
+		{
+			if (ft_isupper(map[y][x]))
+				x++;
+			if (x == cote)
+			{
+				y++;
+				x = 0;
+			}
+
+		}
+	}
 }
 
-int		ft_cmp(char **map, t_list **lst, int y, int x)
+
+
+int		ft_check_place(t_list *lst, char **map)
+{
+	char	**tetris;
+	int		i;
+	int		j;
+	int		ver;
+	int		hor;
+	t_map	coord;
+
+	tetris = ((t_cote*)(lst->content))->tab;
+	ver = ((t_cote*)(lst->content))->ver;
+	hor = ((t_cote*)(lst->content))->hor;
+	j = 0;
+	while (j < ver)
+	{
+		i = 0;
+		while (i < hor)
+		{
+			if (ft_isupper(tetris[j][i]))
+			{
+				coord.x = i;
+				coord.y = j;
+				ft_finish(lst, &coord, map);
+			}
+			i++;
+		}
+	}
+}
+
+int		ft_finish(t_list *lst, t_map *coord, char **map)
 {
 	int		i;
 	int		j;
-	int		cote;
-
+	int		ver;
+	int		hor;
+	t_map	formula;
+	char	**tetris;
+	
+	tetris = ((t_cote*)(lst->content))->tab;
+	ver = ((t_cote*)(lst->content))->ver;
+	hor = ((t_cote*)(lst->content))->hor;
 	j = 0;
-	while (y < cote && j < 4)
+	while (j < ver)
 	{
-		x = 0;
 		i = 0;
-		while (x < cote && ft_isupper(map[y][x]))
-			x++;
-		while (x < cote && i < 4 && ((char**)((*lst)->content))[j][i])
-		{ 
-			if (ft_isupper(((char**)((*lst)->content))[j][i]))
+		while (i < hor)
+		{
+			if (ft_isupper(tetris[j][i]))
 			{
-				if (map[y][x] == '.')
-					x++;
-				else
-					return (1);
+				formula.x = i - coord->x;
+				formula.y = j - coord->y;
 			}
-			else
-				x++;
 			i++;
 		}
-		j++;
-		y++;
+}
+
+int		ft_finish2(t_list *lst, t_map *coord, t_map *formula char **map)
+{
+	static int	
+
+	
+
+int		ft_cmp(char **map, t_list *lst, int y, int x, int cote, t_map coord)
+{
+	char	**tetris;
+	int		hor;
+	int		ver;
+	int		i;
+	int		j;
+
+	tetris = (((t_cote*)(lst->content))->tab);
+	/*
+	int		i;
+	int		j;
+	int		ver;
+	int		hor;
+	char	**tetris;
+
+	tetris = (((t_cote*)(lst->content))->tab);
+	ver = (((t_cote*)(lst->content))->ver);
+	hor = (((t_cote*)(lst->content))->hor);
+	printf("HOR :%i\n", hor);
+	printf("VER :%i\n", ver);
+	j = 0;
+	while (y < cote && x < cote && ft_isupper(map[y][x]))
+	{
+		x++;
+		if (x == cote && (y++))
+			x = 0;
+		printf("NON\n");
 	}
+	i = 0;
+	while (j < ver && i < hor && tetris[j][i] == '.')
+	{
+		i++;
+		if (i == hor)
+		{
+			i = 0;
+			j++;
+		}
+		printf("UNE FOIS\n");
+	}
+	if (ft_isupper(tetris[j][i]))
+	{
+		while (j < ver && y < hor)
+		{
+//			printf("BOUCLE\n");
+			while (y < cote && j < ver && i < hor && x < cote && map[y][x] == '.')
+			{
+				i++;
+				x++;
+				if (i == hor){
+					i = 0;
+					j++;
+				}
+				if (x == cote)
+				{	
+					x = 0;
+					y++;
+				}
+			}
+			if (ft_isupper(map[y][x])){
+				printf("RETURN\n");
+				return (1);
+			}
+		}
+	}
+	coord.y = y;
+	coord.x = x;*/
 	return (0);
 }
 
-char	**backtracking(char **map, t_list **lst, int y, int x)
+int		backtracking(char **map, t_list *lst, int y, int x, int cote)
 {
-	while (ft_cmp(map, lst, y, x) == 0)
+	t_list	*ptr;
+	t_map	coord;
+
+	ptr = lst;
+	coord.x = 0;
+	coord.y = 0;
+	printf("DEBUT\n");
+	if (ptr == NULL)
+		return (0);
+	printf("WHAT\n");
+	while (ft_cmp(map, ptr, y, x, cote, coord) == 0)
 	{
-		cpy_maillons(map, lst);
+		printf("!!!!!!!!!!! YA DE LA PLACE\n");
+		cpy_maillons(map, lst, &coord);
+		printf("????\n");
+		if (backtracking(map, ptr->next, y, x, cote))
+			return (0);
 	}
-	if (ft_cmp(map, lst, y, x) == 1)
-		backtracking(map ,lst, y + 1, x);
-	return (map);
+//	if (ft_cmp(map, ptr, y, x, cote, coord) == 1)
+//	{
+//		printf("NO PLACE !!!!!!!!!!!!!! \n");
+//		delete_tetris(map);
+//		backtracking(map , ptr, y, x + 1, cote);
+//	}
+	return (0);
 }
 
 

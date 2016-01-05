@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 15:25:04 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/31 14:16:28 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/05 20:50:17 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		trim_ho(char **tab, int n)
 			boo++;
 		x++;
 	}
-	return (0);
+	return (boo);
 }
 
 int		trim_ver(char **tab)
@@ -166,49 +166,25 @@ void	trim_tetris(char **tab)
 	}
 }
 
-void	put_tetris(t_list **list, char **tab)//t_fillit *adeter)
+void	put_tetris(t_list **list, t_cote tetris, char **tab)
 {
-	char	**trim;
-	int		i;
-	int		j;
-	int		n;
+//	int		n;
 
-	i = 0;
-	j = 0;
-	trim = (char**)ft_memalloc(sizeof(char*) * 5);
-	while (j < 4)
-		trim[j++] = (char*)ft_memalloc(sizeof(char) * 5);
-	j = 0;
-	while (j < 4)
-	{
-		i = 0;
-		while (i < 4)
-		{
-			trim[j][i] = '.';
-			i++;
-		}
-		trim[j][i] = '\0';
-		j++;
-	}
-	trim_tetris(tab);   // OK EN HAUT A GAUCHE
+	trim_tetris(tab);
 	
-	printf("TRIM : \n");
+	tetris.hor = trim_ver(tab);
+	tetris.ver = trim_ho(tab, tetris.hor);
+
+
+//	printf("TRIM HOR: %i\n", tetris.hor);
+//	printf("TRIM VER: %i\n", tetris.ver);
+
+//	printf("TRIIIIIM :\n");
 	printf("%s\n", tab[0]);
 	printf("%s\n", tab[1]);
 	printf("%s\n", tab[2]);
-	printf("%s\n\n\n", tab[3]);
-	
-	
-	n = trim_ver(tab);
-	trim_ho(tab, n);
-	printf("TRIIIIIM :\n");
-	printf("%s\n", tab[0]);
-	printf("%s\n", tab[1]);
-	printf("%s\n", tab[2]);
-	printf("%s\n", tab[3]);
-	ft_lstaddend(list, ft_lstnew(trim, sizeof(trim)));//ft_lstnew(adeter, sizeof(adeter)));
-	i = 0;
-	while (i < 4)
-		free(trim[i++]);
-	free(trim);
-}
+	printf("%s\n\n", tab[3]);
+
+	ft_lstaddend(list, ft_lstnew(&tetris, sizeof(tetris)));
+//	printf("___________%s\n", ((t_cote*)((*list)->content))->tab[0]);
+} 

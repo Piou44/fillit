@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 10:57:19 by asalama           #+#    #+#             */
-/*   Updated: 2015/12/31 15:07:34 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/05 15:47:19 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char		ft_alphabet(char alpha)
 {
 	static int		i = 1;
 	static int		j = 0;
-	t_fillit		adeter;
+	t_cote		tetris;
 
 	if (alpha == '#')
 	{
@@ -63,7 +63,7 @@ char		ft_alphabet(char alpha)
 		if (j == 4)
 		{
 			i++;
-			adeter.nb_tetris = i;
+			tetris.nb_tetris = i;
 			j = 0;
 		}
 	}
@@ -102,20 +102,19 @@ int			free_everything(char **tab, char *line)
 	return (0);
 }
 
-int			do_everything(t_list *lst, int fd)
+int			do_everything(t_list **lst, t_cote tetris, int fd)
 {
 	int			x;
 	int			ret;
 	char		c;
 	char		*line;
-	t_fillit	adeter;
 
 	if ((line = (char*)malloc(sizeof(char) * 5)) == NULL)
 		return (0);
 	ret = 1;
 	while ((x = 0) || ret > 0)
 	{
-		if (!(adeter.tab = (char**)malloc(sizeof(char*) * 4)))
+		if (!(tetris.tab = (char**)malloc(sizeof(char*) * 4)))
 			return (0);
 		while (x < 4)
 		{
@@ -125,19 +124,19 @@ int			do_everything(t_list *lst, int fd)
 				line[ret] = '\0';
 			else
 				return (0);
-			adeter.tab[x++] = ft_strdup(line);
+			tetris.tab[x++] = ft_strdup(line);
 		}
 		c = '\0';
 		read(fd, &c, 1);
 		if (c != '\0' && c != '\n')
 			return (0);
-		if (!(check_tetris(adeter.tab)))
-			return (free_everything(adeter.tab, line));
-//		printf("%s\n", adeter.tab[0]);
-//		printf("%s\n", adeter.tab[1]);
-//		printf("%s\n", adeter.tab[2]);
-//		printf("%s\n", adeter.tab[3]);
-		put_tetris(&lst, adeter.tab);
+		if (!(check_tetris(tetris.tab)))
+			return (free_everything(tetris.tab, line));
+//		printf("%s\n", tetris.tab[0]);
+//		printf("%s\n", tetris.tab[1]);
+//		printf("%s\n", tetris.tab[2]);
+//		printf("%s\n", tetris.tab[3]);
+		put_tetris(lst, tetris, tetris.tab);
 		if (c == 0)
 			break ;
 	}
