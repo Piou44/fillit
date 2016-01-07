@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 15:25:04 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/06 12:09:50 by asalama          ###   ########.fr       */
+/*   Updated: 2016/01/07 16:30:44 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void	trim_tetris(char **tab)
 	}
 }
 
-void	put_tetris(t_list **list, t_cote tetris, char **tab)
+void	put_tetris(t_list **list, t_maillon tetris, char **tab)
 {
 //	int		n;
 

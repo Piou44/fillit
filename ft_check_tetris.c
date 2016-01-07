@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 10:57:19 by asalama           #+#    #+#             */
-/*   Updated: 2016/01/05 15:47:19 by asalama          ###   ########.fr       */
+/*   Updated: 2016/01/07 15:41:51 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char		ft_alphabet(char alpha)
 {
 	static int		i = 1;
 	static int		j = 0;
-	t_cote		tetris;
+	t_maillon		tetris;
 
 	if (alpha == '#')
 	{
@@ -101,8 +101,8 @@ int			free_everything(char **tab, char *line)
 	free(tab);
 	return (0);
 }
-
-int			do_everything(t_list **lst, t_cote tetris, int fd)
+/*
+int			do_everything(t_list **lst, t_maillon tetris, int fd)
 {
 	int			x;
 	int			ret;
@@ -142,4 +142,4 @@ int			do_everything(t_list **lst, t_cote tetris, int fd)
 	}
 	free(line);
 	return (1);
-}
+}*/
