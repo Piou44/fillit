@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:56:24 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/08 17:31:30 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/09 15:55:14 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int		main(int ac, char **av)
 {
-	int		fd;
-	int		cote;
-	t_list	*lst;
-	t_maillon	*tetris;
-	char	**map;
+	int				fd;
+	int				cote;
+	t_list			*lst;
+	t_maillon		*tetris;
 
 	lst = NULL;
 	if (ac == 2)

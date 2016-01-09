@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:04:00 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/08 13:35:51 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/09 18:48:07 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int			free_map(char **map, int cote)
 	free(map);
 	return (0);
 }
-
 
 void		ft_erase(char **map, char c, int cote)
 {

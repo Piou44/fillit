@@ -6,12 +6,11 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:42:01 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/08 11:58:38 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/09 19:17:40 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
 
 int			count_tetris(t_list **lst)
 {

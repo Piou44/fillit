@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 12:02:20 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/08 19:21:57 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/09 15:33:29 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	**fresh_map(int cote)
 {
 	int		j;
 	char	**map;
-	
 
 	if (!(map = (char**)ft_memalloc(sizeof(char*) * (cote + 1))))
 		return (NULL);

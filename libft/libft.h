@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:11:13 by asalama           #+#    #+#             */
-/*   Updated: 2016/01/08 14:35:55 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/09 18:17:16 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../fillit.h"
 
 typedef struct		s_list
 {

@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 10:57:19 by asalama           #+#    #+#             */
-/*   Updated: 2016/01/08 17:18:13 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/09 16:46:11 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char		ft_alphabet(char alpha)
 {
 	static int		i = 1;
 	static int		j = 0;
-	t_maillon		tetris;
 
 	if (alpha == '#')
 	{
@@ -36,6 +35,21 @@ char		ft_alphabet(char alpha)
 	return (alpha);
 }
 
+int			count_connex(char **tab, int y, int x, int *connex)
+{
+	if (y != 3 && tab[y + 1][x] == '#')
+		(*connex)++;
+	if (y != 0 && tab[y - 1][x] == '#')
+		(*connex)++;
+	if (x != 3 && tab[y][x + 1] == '#')
+		(*connex)++;
+	if (x != 0 && tab[y][x - 1] == '#')
+		(*connex)++;
+	if (!(tab[y][x] = ft_alphabet(tab[y][x])))
+		return (0);
+	return (1);
+}
+
 int			check_diese(char **tab)
 {
 	int		x;
@@ -53,16 +67,8 @@ int			check_diese(char **tab)
 		{
 			if (tab[y][x] == '#')
 			{
-				if (y != 3 && tab[y + 1][x] == '#')
-					connex++;
-				if (y != 0 && tab[y - 1][x] == '#')
-					connex++;
-				if (x != 3 && tab[y][x + 1] == '#')
-					connex++;
-				if (x != 0 && tab[y][x - 1] == '#')
-					connex++;
-				if (!(tab[y][x] = ft_alphabet(tab[y][x])))
-						return (0);
+				if (!(count_connex(tab, y, x, &connex)))
+					return (0);
 				diese++;
 			}
 			x++;
