@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 13:40:31 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/09 18:50:52 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/11 17:11:44 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,18 @@ void	where_is_my_dot(t_maillon *tetris, char **grid, int cote)
 }
 */
 
-void	cpy_maillon(char **grid, t_maillon *tetris, int cote)
+t_list	*find_my_tetris(t_list **lst, char alpha)
+{
+	while (*lst)
+	{
+		if (((t_maillon*)((*lst)->content))->n_tetris == alpha)
+			return (*lst);
+		*lst = (*lst)->next;
+	}
+	return (0);
+}
+
+void	cpy_maillon(char **grid, t_maillon *tetris)
 {
 	int		i;
 	int		j;
@@ -52,9 +63,7 @@ int		try_space(char **grid, t_maillon *tetris, int cote)
 	int			i;
 	int			j;
 
-	if (tetris->y + tetris->ver > cote)
-		return (2);
-	if (tetris->x + tetris->hor > cote)
+	if (tetris->y + tetris->ver > cote || tetris->x + tetris->hor > cote)
 		return (1);
 	j = 0;
 	while (j < tetris->ver)
@@ -69,6 +78,9 @@ int		try_space(char **grid, t_maillon *tetris, int cote)
 		}
 		j++;
 	}
-	cpy_maillon(grid, tetris, cote);
+	cpy_maillon(grid, tetris);
+	print_map(grid, cote);
+	ft_putchar('\n');
+	sleep(1);
 	return (0);
 }

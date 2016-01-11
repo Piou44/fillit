@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:30:04 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/09 18:52:10 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/11 15:14:32 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ int			read_one_c(char *c, int fd)
 	return (1);
 }
 
-int			get_fd(t_maillon *adeter, int fd)
+int			get_fd(t_maillon *tetris, int fd)
 {
 	int		x;
 	int		ret;
 	char	line[BUF_SIZE + 1];
 
+	if (!(tetris->tab = (char**)malloc(sizeof(char*) * 4)))
+		return (0);
 	x = 0;
 	while (x < 4)
 	{
@@ -36,26 +38,34 @@ int			get_fd(t_maillon *adeter, int fd)
 			line[ret] = '\0';
 		else
 			return (0);
-		adeter->tab[x++] = ft_strdup(line);
+		if (!(tetris->tab[x++] = ft_strdup(line)))
+			return (0);
 	}
 	return (1);
 }
 
-int			check_file(t_list *lst, t_maillon *adeter, int fd)
+int			check_file(t_list **lst, t_maillon *tetris, int fd)
 {
 	char		c;
 
 	while (1)
 	{
-		if (!(adeter->tab = (char**)malloc(sizeof(char*) * 4)))
-			return (0);
-		if (!(get_fd(adeter, fd)))
+		if (!(get_fd(tetris, fd)))
 			return (0);
 		if (!(read_one_c(&c, fd)))
 			return (0);
-		if (!(check_tetris(adeter->tab)))
+		if (!(check_tetris(tetris->tab)))
 			return (0);
-		put_tetris(lst, *adeter);
+		put_tetris(lst, *tetris);
+
+/*		
+		while ((*lst))
+		{
+			//			printf("STRUCT : %c\n", tetris->n_tetris);
+			printf("CHECK :%c\n", ((t_maillon*)((*lst)->content))->n_tetris);
+			*lst = (*lst)->next;
+		}
+*/
 		if (c == 0)
 			break ;
 	}

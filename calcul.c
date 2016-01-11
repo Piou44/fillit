@@ -6,24 +6,26 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:42:01 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/09 19:17:40 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/11 13:22:34 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			count_tetris(t_list **lst)
+/*
+int			count_tetris(t_list *lst)
 {
 	int		n;
 
 	n = 0;
-	while (*lst)
+	while (lst)
 	{
-		*lst = (*lst)->next;
+		lst = (lst)->next;
 		n++;
 	}
 	return (n);
 }
+*/
 
 int			square_size(size_t nb_tetris)
 {

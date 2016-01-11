@@ -6,50 +6,35 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 16:57:31 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/09 18:47:53 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/11 16:48:32 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	add_tetris(t_maillon **tetris)
+void	put_tetris(t_list **lst, t_maillon tetris)
 {
-	t_maillon	*ptr;
+	char	c;
 
-	ptr = *tetris;
-	if (tetris != NULL && *tetris == NULL)
-		*tetris = *tetris;
-	else
-	{
-		while (ptr->next)
-		{
-			ptr = ptr->next;
-		}
-		ptr->next = *tetris;
-	}
-}
-
-void	put_tetris(t_list *lst, t_maillon tetris)
-{
-	static char		n = 'A';
-	char			**tab;
-
-	if (!(lst = (t_list*)malloc(sizeof(t_list))))
-		return ;
-	lst->next = NULL;
-	tab = tetris.tab;
-	trim_tetris(tab);
-	tetris.hor = trim_ver(tab, -1, -1);
-	tetris.ver = trim_ho(tab, tetris.hor);
-	tetris.n_tetris = n;
-	n++;
-	//	printf("TRIM HOR: %i\n", tetris.hor);
-	//	printf("TRIM VER: %i\n", tetris.ver);
-	//	printf("TRIIIIIM :\n");
-	printf("%s\n", tab[0]);
-	printf("%s\n", tab[1]);
-	printf("%s\n", tab[2]);
-	printf("%s\n\n", tab[3]);
-	ft_lstaddend(&lst, ft_lstnew(&tetris, sizeof(tetris)));
-	//	printf("___________%s\n", ((t_cote*)((*list).content)).tab[0]);
+	trim_tetris(tetris.tab);
+	tetris.hor = trim_ver(tetris.tab, -1, -1);
+	tetris.ver = trim_ho(tetris.tab, tetris.hor);
+	c = ft_alphabet('a');
+	tetris.n_tetris = c;
+	tetris.x = 0;
+	tetris.y = 0;
+	printf("HOR :%i\n", tetris.hor);
+	printf("VER :%i\n", tetris.ver);
+	printf("N :%c\n", tetris.n_tetris);
+	
+	printf("%s\n", tetris.tab[0]);
+	printf("%s\n", tetris.tab[1]);
+	printf("%s\n", tetris.tab[2]);
+	printf("%s\n\n", tetris.tab[3]);
+	
+	
+	
+	
+	
+	ft_lstaddend(lst, ft_lstnew(&tetris, sizeof(tetris)));
 }

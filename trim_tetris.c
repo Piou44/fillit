@@ -6,46 +6,45 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 15:25:04 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/09 18:45:29 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/11 12:35:17 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "libft/libft.h"
 
 int		trim_ho(char **tab, int n)
 {
-	int		boo;
+	int		i;
 	int		x;
 
-	boo = 0;
+	i = 0;
 	x = 0;
 	while (x < 4)
 	{
 		if (ft_strncmp(tab[x], "....", n) == 0)
 		{
-			if (boo)
+//			if (i)
 				ft_bzero(tab[x], 4);
-			else
-				*tab = tab[x + 1];
-			tab[x] = NULL;
+//			else
+//				*tab = tab[x + 1];
+//			tab[x] = NULL;
 		}
 		else
-			boo++;
+			i++;
 		x++;
 	}
-	return (boo);
+	return (i);
 }
 
 int		trim_ver(char **tab, int x, int y)
 {
-	int		boo;
+	int		i;
 	int		dot;
 	int		alpha;
 
 	alpha = 0;
 	dot = 0;
-	boo = 0;
+	i = 0;
 	while (++x < 4)
 	{
 		y = -1;
@@ -55,13 +54,13 @@ int		trim_ver(char **tab, int x, int y)
 		{
 			alpha = 0;
 			dot = 0;
-			boo++;
+			i++;
 		}
 		if (dot == 4 && (y = -1))
 			while (++y < 4)
 				tab[y][x] = 0;
 	}
-	return (boo);
+	return (i);
 }
 
 void	go_left(char **tab, int boo, int y, int x)

@@ -6,7 +6,7 @@
 /*   By: asalama <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 10:57:19 by asalama           #+#    #+#             */
-/*   Updated: 2016/01/09 16:46:11 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/11 13:07:46 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,46 @@ char		ft_alphabet(char alpha)
 
 	if (alpha == '#')
 	{
-		if (j <= 4)
+		if (j < 4)
 		{
-			alpha = i + 64;
+//			alpha = i + 64;
 			j++;
 		}
 		if (j == 4)
 		{
 			i++;
 			j = 0;
+			if (i > 26)
+				return (0);
+			return (i - 1 + 64);
 		}
 	}
-	if (i > 26)
-		return (0);
-	return (alpha);
+	else
+		return (i - 1 + 64);
+//	return (alpha);
+	return (i + 64);
 }
 
 int			count_connex(char **tab, int y, int x, int *connex)
 {
 	if (y != 3 && tab[y + 1][x] == '#')
+//		printf("a\n");
 		(*connex)++;
-	if (y != 0 && tab[y - 1][x] == '#')
-		(*connex)++;
+//	}
+//	if (y != 0 && tab[y - 1][x] == '#'){
+//		printf("b\n");
+//		(*connex)++;
+//	}
 	if (x != 3 && tab[y][x + 1] == '#')
+//		printf("c\n");
 		(*connex)++;
-	if (x != 0 && tab[y][x - 1] == '#')
-		(*connex)++;
+//	}
+//	if (x != 0 && tab[y][x - 1] == '#'){
+//		printf("d\n");
+//		(*connex)++;
+//	}
+//	printf("CONNEX : %i\n", *connex);
+//	sleep(1);
 	if (!(tab[y][x] = ft_alphabet(tab[y][x])))
 		return (0);
 	return (1);
