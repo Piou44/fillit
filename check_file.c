@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:30:04 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/11 15:14:32 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/12 19:21:36 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,6 @@ int			check_file(t_list **lst, t_maillon *tetris, int fd)
 		if (!(check_tetris(tetris->tab)))
 			return (0);
 		put_tetris(lst, *tetris);
-
-/*		
-		while ((*lst))
-		{
-			//			printf("STRUCT : %c\n", tetris->n_tetris);
-			printf("CHECK :%c\n", ((t_maillon*)((*lst)->content))->n_tetris);
-			*lst = (*lst)->next;
-		}
-*/
 		if (c == 0)
 			break ;
 	}

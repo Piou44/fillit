@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 15:25:04 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/11 12:35:17 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/12 19:23:12 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@ int		trim_ho(char **tab, int n)
 	while (x < 4)
 	{
 		if (ft_strncmp(tab[x], "....", n) == 0)
-		{
-//			if (i)
 				ft_bzero(tab[x], 4);
-//			else
-//				*tab = tab[x + 1];
-//			tab[x] = NULL;
-		}
 		else
 			i++;
 		x++;

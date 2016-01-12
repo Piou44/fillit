@@ -6,29 +6,32 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 13:40:31 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/11 17:11:44 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/12 19:39:00 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-/*
-void	where_is_my_dot(t_maillon *tetris, char **grid, int cote)
+void	coord_list(t_list **lst, t_list *first)
 {
-	while (ft_isupper(grid[tetris->y][tetris->x]))
+	while (*lst)
 	{
-		tetris->x++;
-		if (tetris->x == cote)
-		{
-			tetris->y++;
-			tetris->x= 0;
-		}
+		((t_maillon*)((*lst)->content))->x = 0;
+		((t_maillon*)((*lst)->content))->y = 0;
+		*lst = (*lst)->next;
 	}
+	*lst = first;
 }
-*/
 
-t_list	*find_my_tetris(t_list **lst, char alpha)
+void	coord_maillon(t_list *lst)
 {
+	((t_maillon*)(lst->content))->x = 0;
+	((t_maillon*)(lst->content))->y = 0;
+}
+
+t_list	*find_my_tetris(t_list **lst, t_list *first_m, char alpha)
+{
+	*lst = first_m;
 	while (*lst)
 	{
 		if (((t_maillon*)((*lst)->content))->n_tetris == alpha)
@@ -63,14 +66,17 @@ int		try_space(char **grid, t_maillon *tetris, int cote)
 	int			i;
 	int			j;
 
-	if (tetris->y + tetris->ver > cote || tetris->x + tetris->hor > cote)
-		return (1);
+
 	j = 0;
 	while (j < tetris->ver)
 	{
+		if (tetris->y + j >= cote)
+			return (1);
 		i = 0;
 		while (i < tetris->hor)
 		{
+			if (tetris->x + i >= cote)
+				return (1);
 			if (ft_isupper(tetris->tab[j][i]) &&
 					grid[tetris->y + j][tetris->x + i] != '.')
 				return (1);
@@ -79,8 +85,5 @@ int		try_space(char **grid, t_maillon *tetris, int cote)
 		j++;
 	}
 	cpy_maillon(grid, tetris);
-	print_map(grid, cote);
-	ft_putchar('\n');
-	sleep(1);
 	return (0);
 }

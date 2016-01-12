@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 16:57:31 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/11 16:48:32 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/12 19:22:52 by asalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,5 @@ void	put_tetris(t_list **lst, t_maillon tetris)
 	tetris.n_tetris = c;
 	tetris.x = 0;
 	tetris.y = 0;
-	printf("HOR :%i\n", tetris.hor);
-	printf("VER :%i\n", tetris.ver);
-	printf("N :%c\n", tetris.n_tetris);
-	
-	printf("%s\n", tetris.tab[0]);
-	printf("%s\n", tetris.tab[1]);
-	printf("%s\n", tetris.tab[2]);
-	printf("%s\n\n", tetris.tab[3]);
-	
-	
-	
-	
-	
 	ft_lstaddend(lst, ft_lstnew(&tetris, sizeof(tetris)));
 }
