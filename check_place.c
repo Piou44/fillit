@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 13:40:31 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/12 19:39:00 by asalama          ###   ########.fr       */
+/*   Updated: 2016/01/13 12:15:19 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	coord_list(t_list **lst, t_list *first)
 {
+	*lst = first;
 	while (*lst)
 	{
 		((t_maillon*)((*lst)->content))->x = 0;
@@ -43,8 +44,8 @@ t_list	*find_my_tetris(t_list **lst, t_list *first_m, char alpha)
 
 void	cpy_maillon(char **grid, t_maillon *tetris)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 
 	j = 0;
 	while (j < tetris->ver)
@@ -65,7 +66,6 @@ int		try_space(char **grid, t_maillon *tetris, int cote)
 {
 	int			i;
 	int			j;
-
 
 	j = 0;
 	while (j < tetris->ver)

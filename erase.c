@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:04:00 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/12 19:20:45 by asalama          ###   ########.fr       */
+/*   Updated: 2016/01/13 11:48:07 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,18 @@ void		ft_erase(char **map, char c, int cote)
 		}
 		y++;
 	}
+}
+
+void		free_tetris(t_list **lst)
+{
+	t_list	*ptr;
+
+	ptr = *lst;
+	while (*lst)
+	{
+		ptr = ptr->next;
+		free(*lst);
+		*lst = ptr;
+	}
+	free(lst);
 }

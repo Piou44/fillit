@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 15:53:44 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/12 19:20:37 by asalama          ###   ########.fr       */
+/*   Updated: 2016/01/13 12:21:08 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,18 @@
 # include <string.h>
 
 # define BUF_SIZE 5
+# define CONTENT ((t_maillon*)((*lst)->content))
 
 typedef struct			s_maillon
 {
 	char				**tab;
-	int					x;				// X ET Y OU LE TETRIS A ETE PLACE
-	int					y;				//
+	int					x;
+	int					y;
 	int					ver;
 	int					hor;
 	char				n_tetris;
-	struct s_maillon	*next;			//FONCTION QUI RELIE NEXT ET PREV
-	struct s_maillon	*prev;
+	struct s_maillon	*next;
 }						t_maillon;
-
-/*
-typedef struct			s_map
-{
-	int					x;
-	int					y;
-}						t_map;
-*/
 
 /*
 ** MAP
@@ -61,7 +53,7 @@ int						square_size(size_t nb_tetris);
 
 int						check_diese(char **tab);
 int						check_tetris(char **tab);
-int						check_file(t_list **lst, t_maillon *tetris, int fd);
+int						check_file(t_list **lst, int fd);
 
 /*
 ** TETRIS
@@ -72,6 +64,7 @@ char					ft_alphabet(char alpha);
 void					trim_tetris(char **tab);
 int						trim_ho(char **tab, int n);
 int						trim_ver(char **tab, int x, int y);
+void					free_tetris(t_list **lst);
 
 /*
 **	BACKTRACK
@@ -80,26 +73,9 @@ int						trim_ver(char **tab, int x, int y);
 int						backtracking(t_list **lst, int cote);
 int						try_space(char **grid, t_maillon *tetris, int cote);
 void					ft_erase(char **map, char c, int cote);
-t_list					*find_my_tetris(t_list **lst, t_list *first_m, char alpha);
+t_list					*find_my_tetris(t_list **lst, t_list *first_m,
+							char alpha);
 void					coord_maillon(t_list *lst);
 void					coord_list(t_list **lst, t_list *first);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif

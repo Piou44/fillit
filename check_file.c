@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:30:04 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/12 19:21:36 by asalama          ###   ########.fr       */
+/*   Updated: 2016/01/13 11:52:50 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ int			get_fd(t_maillon *tetris, int fd)
 	return (1);
 }
 
-int			check_file(t_list **lst, t_maillon *tetris, int fd)
+int			check_file(t_list **lst, int fd)
 {
 	char		c;
+	t_maillon	*tetris;
 
+	if (!(tetris = (t_maillon*)malloc(sizeof(t_maillon))))
+		return (0);
 	while (1)
 	{
 		if (!(get_fd(tetris, fd)))

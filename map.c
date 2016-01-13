@@ -6,13 +6,25 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 12:02:20 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/09 15:33:29 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/13 12:19:13 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	fill_with_dots(char **tab, int cote)
+int			square_size(size_t nb_tetris)
+{
+	int		size;
+	int		cote;
+
+	cote = 0;
+	size = nb_tetris * 4;
+	while (size > cote * cote)
+		cote++;
+	return (cote);
+}
+
+void		fill_with_dots(char **tab, int cote)
 {
 	int		i;
 	int		j;
@@ -21,7 +33,7 @@ void	fill_with_dots(char **tab, int cote)
 	while (j < cote)
 	{
 		i = 0;
-		while (i <cote)
+		while (i < cote)
 		{
 			tab[j][i] = '.';
 			i++;
@@ -31,7 +43,7 @@ void	fill_with_dots(char **tab, int cote)
 	}
 }
 
-char	**fresh_map(int cote)
+char		**fresh_map(int cote)
 {
 	int		j;
 	char	**map;
@@ -46,7 +58,7 @@ char	**fresh_map(int cote)
 	return (map);
 }
 
-void	print_map(char **map, int cote)
+void		print_map(char **map, int cote)
 {
 	int		i;
 
